@@ -15,49 +15,33 @@ Reviewers:
 
 ## Overview  
 
-Our product requires a mechanism for users to register as participants in user research activities and usability testing for the various prototypes available on the site. The goal is to provide user experience (UX) researchers with a readily available pool of users that can be filtered by their answers to various screening questions. This design doc will outline how we plan to implement this feature in the user engagement site product.
+The Performance Dashboard product is a collection of Key Performance Indicators that measure the user, service and policy impacts of decisions and changes to digital services.
+
+This "Lessons Learned" document is meant to be a repository of institutional memory for hard-won insights and understanding around the data sets, data points, metrics and KPIs cultivated and created for the dashboard.
 
 ## Context
 
-> As a user, I want to provide my details electronically so that I can become a research participant to help improve Service Canada products.
+> The Digital Channel will deliver a dignified, user centric, responsive and integrated digital journey that delights, motivates and empowers people to help themselves.
 
-The goal of the user engagement site is to provide a means for users to test and see upcoming products in their early stages (eg, prototypes or alpha products). We also want to be able to recruit a diverse userbase to participate in facilitated sessions with researchers. This will provide product owners with useful data can be used to inform decisions on which features and improvements are needed for their early stage product in order to better serve their users. 
+By measuring the user, service and policy metrics across channels in BDM, the analytics combined with qualitative data and user feedback will clearly demonstrate the quality of service, the impact of change to services and policies, and will ensure success is well understood, measured and connected to policy objectives 
 
-Researchers should have access to a diverse pool of users that they can filter to find relevant groups of people to test their products with. For example, if the goal is to test a feature to see whether it is accessible to a visually impaired user, then you want to be able to invite users with visual impairments for a facilitated testing session. 
+## Goals
 
-To accomplish these goals we require a mechanism for users to voluntarily provide their information to register as a potential participant for facilitated sessions. Researchers will have access to be able to view these submissions to be able to filter to their needs.
-
-We plan on implementing this using [Azure's CosmosDB](https://azure.microsoft.com/en-ca/services/cosmos-db) NoSQL database (basically an MS-branded managed MongoDB database), and build the form itself using a [Next.JS web app](https://nextjs.org/). We will be using GC Notify to send the user a confirmation email after they sign up. To view the data, we plan on deploying a script that will run once a day to generate a CSV file and push to an Azure Storage Account, access-controlled by the corporate Active Directory and resource group Identity and Access Management (IAM) rules. The CSV will contain only the records of users who have confirmed their email by clicking a unique link in their confirmation email. 
-
-Users can delete their data by filling out a form with their email and clicking a unique link in a deletion confirmation email sent using GC Notify.
-
-## Goals and Non-Goals 
-
-### Goals 
-
-* To have an intake form on the user engagement site where users can submit their information to register for testing sessions.
-* To provide an updated spreadsheet of confirmed user submissions to researchers such that they can filter users that can be potentially recruited for facilitated testing sessions. 
-
-### Non-Goals 
-
-* Filtering out of PII
-* Payments and compensation for users.
-* Managing which users have been contacted to participate in testing. In other words, any sort of CRM capabilities.
+- Create a Performance Dashboard MVP
+- Identify KPIs for user, service and policy impacts
+- Measure, benchmark and track metrics that affect digital channel outcomes
 
 ## Milestones 
 
 
-`Start Date: TBD`
+`Start Date: June 1, 2020`
 
 ```
-Milestone 1 - [ TBD ] TBD
+Milestone 1 - [ August 1, 2020 ] Create MVP Performance Dashboard
 ```
 
 `End Date: TBD`
 
-## Existing Solution 
-
-There is no existing solution.
 
 ## Proposed Solution
 
@@ -69,7 +53,7 @@ The proposed solution can be split into three main parts.
 
 ### 1. User Signup
 
-![user signup architecture and flow diagram](./images/design-doc-004/usersignup.png)
+![Integrating Measurement across ESDC diagram](./Slide3.PNG)
 
 User signup involves the user filling out a form on the React client application (using Next.JS) in which the submission sends a POST request to our NextJS application. A unique identifier called a Collision Resistant Unique Identifier (CUID) is generated and the record is created in the CosmosDB database. Once this record is created, a unique link is generated where the CUID is included as a query argument (eg, `https://alpha.service.canada.ca/validation?cuid=cjld2cyuq0000t3rmniod1foy`), which is sent to the user in an email, in the user's language of choice. After clicking the link, they will be marked as confirmed in the database and redirected to a thank you page. If users do not validate their email within 24 hours of registration, their record is removed from the database and will have to re-submit the form.
 
