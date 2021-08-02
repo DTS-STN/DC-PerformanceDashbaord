@@ -30,6 +30,7 @@ By measuring the user, service and policy metrics across channels in BDM, the an
 - Create a Performance Dashboard MVP
 - Identify KPIs for user, service and policy impacts
 - Measure, benchmark and track metrics that affect digital channel outcomes
+- Retain contextual knowledge around data, business processes, metrics and KPIs
 
 ## Milestones 
 
@@ -58,19 +59,15 @@ ESDC teams and performance measurement frameworks consulted to date include: Ser
 ![Digital Channel Slide 1](./Slide4.PNG)
 ![Digital Channel Slide 2](./Slide5.PNG)
 
-ipsum
-
 ### 3. Learning while building
 
 ![Learning While Building Slide 1](./Slide6.PNG)
-
-ipsum
 
 ## Specific Metric and KPI Lessons
 
 ### 1. % Share of recent and elgible mothers, Policy KPIs
 
-***Quebec respondent data is removed from survey tabulations***
+***Data source: Employment Insurance Coverage Survey. Quebec respondent data is removed from survey tabulations***
 
 The target population for this survey is a subset of the target population for the Labour Force Survey (LFS). 
 
@@ -84,4 +81,20 @@ Sample size: Canada - 13,229. Weighted through final weight variable provided in
 
 More information about the 2019 EICS can be found at https://www23.statcan.gc.ca/imdb/p2SV.pl?Function=getSurvey&Id=1290741#a2
 
+### 2. % Service Uptime Lessons
 
+***Data Source: Canada.ca Adobe Web Analytics***
+
+GC Web Team suggests using Daily Page Views & Visits as a proxy for service uptime as no reliable service uptime metric currently exists.
+
+### 3.  (secs) Weekly average user time per visit
+
+***Data Source: Canada.ca Adobe Web Analytics***
+
+User time per visit is a controversial metric because while a service or product wants to communicate information to users as quickly and efficiently as possible, the Life Journey approach is also attempting to provide *more* holisitic information to clients than ever before - creating competing objectives and potential for perverse incentives. However, we believe the stronger argument currently is that there is room to provide current information more efficiently and keep visit times to a minimum long-term.
+
+### 4.  (mins) Median time to submit application (2020)
+
+***Data Source: EI Administration Data, NEIW dataset***
+
+Metric is skewed because when a user creates an application, there is no pausing or stopping of the timer that measures application completion time. Therefor a user could close the application window, forget about the applcation entirely and the application time limit of 72 hours would be tallied and input with the data.
